@@ -1,0 +1,25 @@
+html{
+background-image: url("../images/bg01.jpg");
+background-repeat: no-repeat;
+text-align: center;
+text-decoration: none;
+font-family: "Lucida Sans Unicode"
+}
+body{
+	//background-image: url("../images/bg03.jpg");
+	margin-left:100px;
+}
+h1{
+	color: rgb(0,255,0);
+	margin-left:-10px;
+}
+div{
+	color:rgb(0,255,0);
+}
+div.img img{
+width: 10%;
+height: 10%;
+}
+ul{
+	list-style-type: none;
+}

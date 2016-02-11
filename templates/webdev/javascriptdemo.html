@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="stylesheet" href="../../staticfiles/css/main.css" />
+<title> Lab 1 </title>
+<h1> Adder Demo </h1>
+<script type="text/javascript">
+	function addFunction(){
+	var n1=document.getElementById('num1').value;
+	var n2=document.getElementById('num2').value;
+	var n3 = parseInt(n1)+parseInt(n2);
+	var divTag = document.getElementById('output');
+	divTag.innerHTML = n3;
+}
+</script>
+</head>
+<body>
+<input type = text id="num1">
+<input type=text id="num2">
+<a class="button" onclick="addFunction()"> Add</a>
+<div id="output">
+</div>
+</body>
+</html>
