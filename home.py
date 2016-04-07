@@ -10,17 +10,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
    return render_template('index.html')
 
-@app.route('/webdev')
-def webdev():
-   return render_template('webdev/webdevhome.html')
-
-@app.route('/webdev/lab0')
-def lab0():
-   return render_template('webdev/lab0.html')
-
-@app.route('/webdev/lab1')
-def lab1():
-   return render_template('webdev/lab1.html')
 
 @app.route('/dtc')
 def dtc():
