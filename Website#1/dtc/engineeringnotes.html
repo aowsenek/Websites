@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Justified Nav Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../staticfiles/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../staticfiles/css/justified-nav.css" rel="stylesheet">
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="masthead">
+        <h3 class="text-muted">Digital Time Capsule</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li><a href="dtc">DTC</a></li>
+            <li><a href="timecapsule">The Project</a></li>
+            <li class="active"><a href="engineeringnotes">Engineering Notes</a></li>
+            <li><a href="countdown">Countdown</a></li>
+            <li><a href="upload">Upload</a></li>
+            <li><a href="about">About</a></li>
+          </ul>
+        </nav>
+      </div>
+<div class="jumbotron">
+<h2> Engineering Notes</h2>
+</div>
+<hr>
+<ol ><li><p>Raspberry PI A+. I have chosen the raspberry pi (RPI) A+ for its computational function, low price, and lower current requirement (as compared to the RPI B). While it does require a stabler environment (constant, regulated 5v power) than an Arduino Uno, the advantages of running a minicomputer instead of a basic project board far outweigh the requirements.</p>
+
+</li>
+<li><p>Real Time Clock (PCF85263A): I found it difficult to decide between the PCF85263A and another, more comprehensively functional RTC IC, by digikey. However, I decided that my low-power requirement for the RTC is more important than extremely accurate time correction, especially seeing as the WAITS capsule does not require a super-accurate form of timekeeping, though it could greatly benefit from it. It runs on 900mA</p>
+
+</li>
+<li><p>32 GB microSD cards: After careful research I have settled on two microSD cards that will be compatible with the A+. I would like to eventually order a microSD of greater capacity than 32GB, just to experiment to see if it is compatible with the A+, which I think is likely. However, the internet does not have any information on A+ compatibility with large SD cards (64-128GB). </p>
+
+</li>
+<li><p>Wifi Dongle: Because I have settled on the RPI A+, I have decided to use a wifi dongle instead of a chip extension, as it is easier to use and configure than the chip extension (which would be required to use with the Arduino)</p>
+
+</li>
+<li><p>Power: Remains a difficult issue. I have gone back and forth on several different types of power storage and generation. While a hydrogen fuel cell appears to be the best for long-term storage/ retaining potency, it is expensive and therefore not ideal. it also would only run for roughly two weeks before needing a replacement Hydrogen tank. I have contemplated various forms of alternative generation, such as solar, wind, and thermal. However, they do not generate nearly enough power to satisfy my requirements. I have not yet deemed any power sources that I have come across ideal. This power source will only supply power to the RPI.</p>
+
+</li>
+<li><p>This is a separate battery, a CMOS battery for the RTC to keep running while the RPI is dormant, However, since a button battery or regular alkaline battery would not provide enough power for long enough, this absolutely must be some form of power generation, such as a thermocouple or photodiode.</p>
+
+</li>
+<li><p>This is the “trigger” or the circuitry that will detect what time it is appropriate to connect the power source to the RPI and boot.</p>
+
+</li>
+</ol>
+
+<hr>
+<p>&copy Anya Owsenek, Bell-TJ Labs, Edu. </p>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

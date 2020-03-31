@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>DTC</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../staticfiles/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../staticfiles/css/justified-nav.css" rel="stylesheet">
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="masthead">
+        <h3 class="text-muted">Digital Time Capsule</h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li><a href="/">Home</a></li>
+            <li><a href="dtc">DTC</a></li>
+            <li class="active"><a href="timecapsule">The Project</a></li>
+            <li><a href="engineeringnotes">Engineering Notes</a></li>
+            <li><a href="countdown">Countdown</a></li>
+            <li><a href="upload">Upload</a></li>
+            <li><a href="about">About</a></li>
+          </ul>
+        </nav>
+      </div>
+   <div class="jumbotron"> 
+<h1>Raspberry Pi</h1><a id="rpi"></a>
+ <h2>RPI vs. Arduino</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Trait</th>
+                <th>RPI</th>
+                <th>Arduino</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Voltage</td>
+                <td>Constant 5V</td>
+                <td>7-12V</td>
+              </tr>
+              <tr>
+                <td>Current</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Storage</td>
+                <td>SD Card</td>
+                <td>32Kb</td>
+              </tr>
+              <tr>
+                <td>WiFi Compatibility</td>
+                <td>USB Dongle</td>
+                <td>Arduino WiFi Shield</td>
+              </tr>
+              <tr>
+                <td>Cost</td>
+                <td>$25-$35</td>
+                <td>$6-$30</td>
+              </tr>
+              <tr>
+                <td>Startup</td>
+                <td>Needs to boot kernel, OS</td>
+                <td>Instant; Handles flucuations well</td>
+              </tr>
+              <tr>
+                <td>Clock Speed</td>
+                <td>700MHz</td>
+                <td>16MHz</td>
+              </tr>
+              <tr>
+                <td>RAM</td>
+                <td>512Mb</td>
+                <td>.002Mb</td>
+              </tr>
+              <tr>
+                <td>Programming</td>
+                <td>IDLE, Bash, C, HTML, Anything</td>
+                <td>Ardunio</td>
+              </tr>
+              <tr>
+                <td>USB</td>
+                <td>2, read/write</td>
+                <td>1, read only</td>
+              </tr>
+            </tbody>
+          </table>
+         </div>
+<p> As you can see in the table, the Raspberry Pi is far superior to the Arduno Uno. My project requires what is essentially a miniature computer. The Arduino, a device I had initially intended to use, when compared to the Raspberry Pi, came up short in almost every category except price and durability.</p>
+<hr>
+<h3> Storage</h3>
+<p> Because the Raspberry Pi is a fully functional computer, it saves me the burden of having to write brand new code. Instead I have to modify existing frameworks and learn them, no simple task. This makes storing files and creating a user interface for the project easy, as all I need to do is launch an adhoc webserver with get and proc to upload and download files. A bash script to .zip the files together is a relatively simple task. However, due to signal degredation of a digital storage device such as a USB or SD card, the RPI must start up every four years and refresh the voltages.</p>
+<h3> Webserver </h3>
+<p>The WIFI adhoc network, DNS redirect, webserver, and website for the RTC all work, save for the permissions of the CSS files on the site. I have decided to temporarily put this on a backburner in order to work on the clock. For the adHoc network, I used Hostapd, for the DNS redirect, I used DNSmasq, the webserver was jointly run with NGINX and FLASK, and of course all the html and JS and CSS for the website are all their own. The upload/download works, however I still haev yet to write the shutdown shell script to.zip everything uploaded into a certain named file. I do, however, have a working startup script.</p>
+</div>
+<h1>Clock</h1><a id="clock"></a>
+<p>The clock, the device that will count down the years and wait for the day to turn on the RPI, is an integrated chip called an RTC, or Real-Time Clock. These hyper-accurate chips smaller than your pencil eraser can utilize a backup power source, sound an alarm, account for leap years, and use miniscule amounts of power. The clocks in desktop computers can run off of button batteries for a decade. However, a challenge I have encountered with this device is the issue of power- if it is running constantly for five decades, what kind of power source can it use?</p>
+<p>I have encountered issues with making the RPI compatible with the RTC, a OM13510 chip. There are about 20 different drivers for RTCs, and nowhere in the OM13510 documentation did it specify a particular driver, so finding the correct one fell to guess-check-reboot. Eventually I discovered that the necessary drievr is the rtc-ds1307 kernel driver for pidora. Despite this module being compatible, it still has issues: /dev/rtc-0 will not communicate with the RTC but passing -D (using /dev) does work. For some reason the RPI also views everything as outside of acceptable time range, and refuses to set. </p>
+<h1>Power</h1><a id="power"></a>
+<p>"Maintence free," the motto of my Digital Time Capsule, presents a difficult conundrum when confronted with the issue of power. There are no power sources, such as batteries, that can last for a decade and a half. Trickle charging is a moot point because batteries degrade over time, even when not in use, and after roughly 7 years cannot hold a charge. Renewable methods, such as solar panels or turbines place location constraints and power generation difficulties. But I have seen the light! The only clean-energy, nondegradable power source is a 5 Watt hydrogen fuel cell. However, as this device is expensive, proprietary, and limited in the power it can store, I have opted to put this issue on a backburner and if needed, use an outlet (thus breaking the "self-contained" goal) for the project. I will need a voltage regulator, but compared to the other options I could be fighting with right now, I'm not terribly concerned. An outlet also solves the problem of a seperate backup power source for the clock.</p>
+
+
+</div>
+<hr>
+<p>&copy Anya Owsenek, Bell-TJ Labs, Edu. </p>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
